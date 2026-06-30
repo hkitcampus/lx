@@ -39,19 +39,31 @@ var lb = document.getElementById('lightbox'),
     lbImg = document.getElementById('lb-img'),
     lbCap = document.getElementById('lb-cap'),
     lbCount = document.getElementById('lb-count'),
+    lbList = galleryItems,
     cur = 0;
 function showLb(i){
-  cur = (i + galleryItems.length) % galleryItems.length;
-  lbImg.src = galleryItems[cur].src;
-  lbImg.alt = galleryItems[cur].cap;
-  lbCap.textContent = galleryItems[cur].cap;
-  lbCount.textContent = (cur+1) + ' / ' + galleryItems.length;
+  cur = (i + lbList.length) % lbList.length;
+  lbImg.src = lbList[cur].src;
+  lbImg.alt = lbList[cur].cap;
+  lbCap.textContent = lbList[cur].cap;
+  lbCount.textContent = (cur+1) + ' / ' + lbList.length;
 }
-function openLb(i){ showLb(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+function openLb(list, i){ lbList = list; showLb(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
 function closeLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
 gallery.addEventListener('click', function(e){
   var item = e.target.closest('.g-item');
-  if(item) openLb(parseInt(item.dataset.i,10));
+  if(item) openLb(galleryItems, parseInt(item.dataset.i,10));
+});
+
+/* ===== 폴라로이드 클릭 → 크게 보기 ===== */
+var polaroidEls = Array.prototype.slice.call(document.querySelectorAll('.polaroid'));
+var polaroidItems = polaroidEls.map(function(fig){
+  var img = fig.querySelector('img'), cap = fig.querySelector('.cap');
+  return { src: img.getAttribute('src'), cap: cap ? cap.textContent.trim() : (img.alt || '') };
+});
+polaroidEls.forEach(function(fig, i){
+  fig.style.cursor = 'zoom-in';
+  fig.addEventListener('click', function(){ openLb(polaroidItems, i); });
 });
 document.getElementById('lb-close').addEventListener('click', closeLb);
 document.getElementById('lb-prev').addEventListener('click', function(){ showLb(cur-1); });

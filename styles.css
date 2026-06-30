@@ -1,8 +1,7 @@
-/*@font-face{
-  font-family:'JejuDoldam';
-  src:url('uploads/fonts/EF_jejudoldam(TTF).ttf') format('truetype');
-  font-weight:400;font-display:swap;
-}*/
+/* ===== 자체 호스팅 웹폰트 (모바일/오프라인에서도 확실히 적용) ===== */
+@font-face{font-family:'Pretendard';font-style:normal;font-weight:100 900;font-display:swap;src:url('webfonts/PretendardVariable.woff2') format('woff2')}
+@font-face{font-family:'Hahmlet';font-style:normal;font-weight:100 900;font-display:swap;src:url('webfonts/Hahmlet-VF.ttf') format('truetype')}
+@font-face{font-family:'Nanum Pen Script';font-style:normal;font-weight:400;font-display:swap;src:url('webfonts/NanumPenScript-Regular.ttf') format('truetype')}
 :root{
   --orange:#e4d60f;        /* 오렌지 */
   --ivory:#fffaae;        /* 아이보리 */
@@ -98,8 +97,9 @@ section.block{padding:clamp(64px,9vw,110px) 0}
 /* FEATURES */
 .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
 .feat{padding:34px 30px;border-radius:22px;background:#fff;box-shadow:0 16px 40px rgba(11,58,76,.07);border:1px solid var(--line)}
-.feat .ic{width:60px;height:60px;border-radius:18px;display:grid;place-items:center;font-size:28px;background:var(--mint);margin-bottom:18px}
-.feat h3{font-size:20px;font-weight:800;color:var(--deep);margin-bottom:9px}
+.feat-head{display:flex;align-items:center;gap:13px;margin-bottom:13px}
+.feat .ic{flex:none;width:50px;height:50px;border-radius:15px;display:grid;place-items:center;font-size:25px;background:var(--mint)}
+.feat h3{font-size:19px;font-weight:800;color:var(--deep);margin:0}
 .feat p{font-size:14.5px;line-height:1.65;color:var(--muted);font-weight:500}
 .feat.hl{background:linear-gradient(150deg,var(--ocean),var(--teal));color:#fff;border:none;box-shadow:0 20px 44px rgba(10,92,128,.32)}
 .feat.hl .ic{background:rgba(255,255,255,.18)}
