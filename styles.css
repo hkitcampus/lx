@@ -18,6 +18,8 @@
   --maxw:1180px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
+/* 휴대폰 다크모드 자동 반전 방지 (라이트 전용) */
+:root{color-scheme:light only}
 html{scroll-behavior:smooth;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{font-family:'Pretendard',-apple-system,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden;width:100%;max-width:100%}
 img{display:block;max-width:100%}
@@ -127,7 +129,14 @@ section.block{padding:clamp(64px,9vw,110px) 0}
 .polaroid:nth-child(5)::before{background:rgba(178,222,120,.5);rotate:3deg}
 .polaroid:nth-child(6)::before{background:rgba(201,162,232,.46)}
 .polaroid:hover{transform:rotate(0deg) translateY(-10px) scale(1.04);box-shadow:0 26px 50px rgba(11,58,76,.27);z-index:3}
-@media(max-width:640px){.polaroid{width:46%}.polaroid img{height:42vw}.polaroid:nth-child(odd){margin-top:14px}}
+@media(max-width:640px){
+  .polaroids{gap:16px 12px}
+  .polaroid{width:calc(50% - 8px)}
+  .polaroid img{height:40vw}
+  .polaroid .cap{font-size:21px;padding:9px 4px 13px}
+  .polaroid .sticker{font-size:24px;top:-13px;right:-8px}
+  .polaroid:nth-child(odd){margin-top:14px}
+}
 
 /* SCHEDULE */
 .sched{background:linear-gradient(180deg,#063150,#0a4f70);color:#fff}
@@ -278,9 +287,21 @@ footer .fcontact a:hover{color:#fff}
   #nav .links .apply-btn{text-align:center;margin-top:4px}
   #menu-toggle{display:flex}
   #nav .nav-sub{display:none}
-  .term-grid,.feat-grid,.month-grid,.benefit-grid,.elig-grid,.steps{grid-template-columns:1fr}
+  .term-grid,.feat-grid,.month-grid,.benefit-grid,.elig-grid{grid-template-columns:1fr}
+  /* 선발절차 — 여백 있는 휴대폰에선 2열 유지 */
+  .steps{grid-template-columns:repeat(2,1fr);gap:18px 14px}
   .benefit.hl{grid-column:auto}
-  .apply{background-attachment:scroll}
+  /* 파트너 로고 — 한 줄 유지 (줄바꿈 방지) */
+  .partners .inner{flex-wrap:nowrap;gap:0;padding:14px 12px}
+  .partner{padding:0 10px;min-width:0;flex:1 1 0}
+  .partner img{height:22px;max-width:100%}
+  .partner .ep{height:30px}
+  .partner .role{font-size:10px;letter-spacing:.08em}
+  /* APPLY — 모바일에선 고정 비율 해제, 내용 높이에 맞춰 늘어나도록 */
+  .apply{aspect-ratio:auto;min-height:0;background-attachment:scroll;background-position:center}
+  .apply .inner{padding:60px 22px}
+  .apply h2{margin-bottom:16px}
+  .apply p{font-size:15.5px;margin-bottom:26px}
   .hero-bg{background-attachment:scroll}
   /* 히어로 통계 — 모바일에서 2열 표 형태로 정렬 */
   .hero .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px 16px}
