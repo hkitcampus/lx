@@ -303,6 +303,15 @@
     .benefit.hl{grid-column:auto}
     .apply{background-attachment:scroll}
     .hero-bg{background-attachment:scroll}
+    /* 히어로 통계 — 모바일에서 2열 표 형태로 정렬 */
+    .hero .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px 16px}
+    .hero .hero-stats .stat{padding:0}
+    .hero .hero-stats .stat:first-child{padding-left:0}
+    .hero .hero-stats .stat+.stat::before{display:none}
+    .hero .hero-stats .v{font-size:24px}
+    .hero .meta-row{gap:8px 14px}
+    .hero .meta-row span+span{padding-left:0}
+    .hero .meta-row span+span::before{display:none}
   }
 </style>
 </head>
